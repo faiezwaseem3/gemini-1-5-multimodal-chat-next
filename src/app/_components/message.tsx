@@ -1,7 +1,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { cn } from "@/lib/utils";
 import { Message } from "ai/react";
-import { Bot, Code, User } from "lucide-react";
+import { Bot, Code, User } from 'lucide-react';
 import { MarkdownViewer } from "./markdown-viewer/MarkdownViewer";
 import { MessageData } from "@/types";
 import { TypingBubble } from "./TypingBubble";
@@ -22,7 +22,7 @@ export function ChatList({ messages, typing }: ChatListProps) {
       {messages.map((message) => (
         <div
           key={message.id}
-          className="py-6 border-b border-neutral-800/80 whitespace-pre-line"
+          className="py-6 border-b border-zinc-700/80 whitespace-pre-line"
         >
           <MessageBubble
             icon={getMessageIcon(message.role)}
@@ -53,11 +53,11 @@ const MessageContent: React.FC<MessageContentProps> = React.memo(
           <img
             src={`data:image/jpeg;base64,${image}`}
             alt="User upload"
-            className="max-w-full h-auto"
+            className="max-w-full h-auto rounded-lg"
           />
         )}
         {audio && (
-          <audio controls>
+          <audio controls className="w-full">
             <source src={`data:audio/mp3;base64,${audio}`} type="audio/mp3" />
             Your browser does not support the audio element.
           </audio>
@@ -79,7 +79,7 @@ const MessageBubble: React.FC<MessageBubbleProps> = React.memo(
       <div className="group relative flex items-start md:-ml-12">
         <div
           className={cn(
-            "flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow-sm bg-background",
+            "flex h-8 w-8 shrink-0 select-none items-center justify-center rounded-md border shadow-sm bg-zinc-800 border-zinc-700",
             iconClassName
           )}
         >
@@ -96,11 +96,11 @@ const MessageBubble: React.FC<MessageBubbleProps> = React.memo(
 function getMessageIcon(role: string) {
   switch (role) {
     case "user":
-      return <User />;
+      return <User className="text-zinc-300" />;
     case "assistant":
-      return <Bot />;
+      return <Bot className="text-zinc-300" />;
     case "system":
-      return <Code />;
+      return <Code className="text-zinc-300" />;
     default:
       return null;
   }
@@ -108,6 +108,7 @@ function getMessageIcon(role: string) {
 
 function getMessageIconClassName(role: string) {
   return role === "assistant" || role === "system"
-    ? "bg-primary text-primary-foreground"
-    : undefined;
+    ? "bg-zinc-700 text-zinc-300 border-zinc-600"
+    : "bg-zinc-800 text-zinc-300 border-zinc-700";
 }
+

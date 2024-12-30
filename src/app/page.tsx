@@ -1,11 +1,12 @@
 // app/page.tsx
+import { ChatSidebar } from "./_components/chat-sidebar";
 import { ChatContainer } from "./_components/ChatContainer";
-import { GitHubLink } from "./_components/GitHubLink";
+
 
 export default function Home() {
   return (
-    <main className="h-screen max-w-6xl m-auto gap-4 p-2 md:p-4 my-12 md:my-0">
-      <GitHubLink />
+    <main className="flex flex-row h-screen w-screen">
+        <ChatSidebar />
       <ChatContainer />
     </main>
   );
